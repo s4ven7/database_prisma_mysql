@@ -1,0 +1,35 @@
+import { Injectable, NotImplementedException } from '@nestjs/common';
+import { CreateProdutoDto } from './dto/create-produto.dto';
+import { UpdateProdutoDto } from './dto/update-produto.dto';
+import { PrismaService } from '../prisma/prisma.service';
+
+@Injectable()
+export class ProdutoService {
+  constructor(private prisma: PrismaService) {}
+
+  listarTodos() {
+    return this.prisma.produto.findMany();
+  }
+
+  buscarPorId(id: number) {
+    return this.prisma.produto.findUnique({
+      where: { id },
+    });
+  }
+
+  criar(dados: CreateProdutoDto) {
+    return this.prisma.produto.create({
+      data: dados,
+    });
+  }
+
+  atualizar(id: number, updateProdutoDto: UpdateProdutoDto) {
+    return `This action updates a #${id} produto`;
+  }
+
+  remover(id: number) {
+    return this.prisma.produto.delete({
+      where: { id },
+    });
+  }
+}
