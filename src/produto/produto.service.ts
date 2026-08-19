@@ -23,8 +23,11 @@ export class ProdutoService {
     });
   }
 
-  atualizar(id: number, updateProdutoDto: UpdateProdutoDto) {
-    return `This action updates a #${id} produto`;
+  atualizar(id: number, dados: UpdateProdutoDto) {
+    return this.prisma.produto.update({
+      where:{id},
+      data:dados
+    });
   }
 
   remover(id: number) {

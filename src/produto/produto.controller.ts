@@ -31,7 +31,7 @@ export class ProdutoController {
   }
 
   @Patch(':id')
-  update(@Param('id') id: string, @Body() updateProdutoDto: UpdateProdutoDto) {
+  atualizar(@Param('id') id: string, @Body() updateProdutoDto: UpdateProdutoDto) {
     return this.produtoService.atualizar(+id, updateProdutoDto);
   }
 
